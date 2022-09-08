@@ -6,11 +6,16 @@ import { action } from "@storybook/addon-actions";
 import "index.scss";
 
 import Button from "components/Button";
+// DayList components
 import DayListItem from "components/DayListItem";
 import DayList from "components/DayList";
+// InterviewerList components
 import InterviewerListItem from "components/InterviewerListItem";
 import InterviewerList from "components/InterviewerList";
+// Appointment components
 import Appointment from "components/Appointments";
+import Header from "components/Appointments/Header";
+import Empty from "components/Appointments/Empty";
 
 storiesOf("Button", module)
   .addParameters({
@@ -139,5 +144,7 @@ storiesOf("DayListItem", module) //Initiates Storybook and registers our DayList
     .addParameters({
        backgrounds: [{ name: "white", value: "#fff", default: true }]
     })
-   .add("Appointment", () => <Appointment />)
+    .add("Appointment", () => <Appointment />)
     .add("Appointment with Time", () => <Appointment time="12pm" />)
+    .add("Header", () => <Header time="12pm" />)
+    .add("Empty", () => <Empty onAdd={action("onAdd")} />)
