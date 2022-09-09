@@ -1,11 +1,14 @@
+// Base dependencies
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
-
+// Components
 import "components/Application.scss";
 import DayList from "components/DayList";
 import Appointment from "components/Appointments";
+// Helpers
+import { getAppointmentsForDay } from "helpers/selectors";
 
 export default function Application(props) {
 
@@ -14,18 +17,22 @@ export default function Application(props) {
     days: [],
     appointments: {}
   });
+  
+  const dailyAppointments = getAppointmentsForDay(state, state.day);
 
-  const setDay = day => setState({ ...state, day });
-  const setDays = days => setState(prev => ({ ...prev, days }));
+  const setDay = (day) => setState({ ...state, day });
+  const setDays = (days) => setState(prev => ({ ...prev, days }));
 
 
   useEffect(() => {
-    axios.get("/api/days").then((response) => {
-      setDays(response.data);
-    }, []);
-  });
+    Promise.all([
+      axios.get("/api/days"),
+      axios.get("/api/appointments")
+    ]).then((all) => {
+      setState(prev => ({ ...prev, days: all[0].data, appointments: all[1].data }));
+    });
+  })
 
-  const dailyAppointments = [];
 
   
 
@@ -52,7 +59,7 @@ export default function Application(props) {
 
       </section>
       <section className="schedule">
-        {Object.values(appointments).map((appointment) => {
+        {dailyAppointments.map((appointment) => {
           return (
             <Appointment
               key={appointment.id}
