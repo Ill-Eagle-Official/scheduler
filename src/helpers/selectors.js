@@ -12,3 +12,17 @@ export function getAppointmentsForDay(state, day) {
   return appointmentArr;
   
 }
+
+// Retrieves the interviewer info from state to use as props for the Appointment component
+
+export function getInterview(state, interview) {
+
+  if (!interview) {
+    return null;
+  }
+
+  const interviewer = state.interviewers[interview.interviewer];
+
+  return { ...interview, interviewer };
+  
+  }
