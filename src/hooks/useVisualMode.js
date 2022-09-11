@@ -1,3 +1,5 @@
+// custom hook to manage the visual mode of the application
+
 import { useState } from "react";
 
 export default function useVisualMode (initial) {

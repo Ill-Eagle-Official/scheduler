@@ -1,3 +1,10 @@
+// helper function to match ids in the dayObj and final array
+export function matchId(state, array) {
+  const match = array.map((id) => state[id]);
+  return match;
+}
+
+
 // Retrieves the appointment info from state to use as props for the Appointment component
 export function getAppointmentsForDay(state, day) {
 
@@ -13,7 +20,7 @@ export function getAppointmentsForDay(state, day) {
   
 }
 
-// Retrieves the interviewer info from state to use as props for the Appointment component
+// Retrieves the interview info from state to use as props for the Appointment component
 
 export function getInterview(state, interview) {
 
@@ -26,3 +33,19 @@ export function getInterview(state, interview) {
   return { ...interview, interviewer };
   
   }
+
+// Retrieves the interviewer info from state to use as props for the Appointment component
+
+export function getInterviewersForDay(state, day) {
+
+  const dayObj = state.days.find((dayObj) => dayObj.name === day);
+
+  if (!dayObj) {
+    return [];
+  }
+
+  const interviewerArr = dayObj.interviewers.map((id) => state.interviewers[id]);
+
+  return matchId(state.interviewers, interviewerArr);
+  
+}
