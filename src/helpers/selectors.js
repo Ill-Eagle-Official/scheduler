@@ -1,10 +1,3 @@
-// helper function to match ids in the dayObj and final array
-export function matchId(state, array) {
-  const match = array.map((id) => state[id]);
-  return match;
-}
-
-
 // Retrieves the appointment info from state to use as props for the Appointment component
 export function getAppointmentsForDay(state, day) {
 
@@ -46,6 +39,6 @@ export function getInterviewersForDay(state, day) {
 
   const interviewerArr = dayObj.interviewers.map((id) => state.interviewers[id]);
 
-  return matchId(state.interviewers, interviewerArr);
+  return interviewerArr;
   
 }
