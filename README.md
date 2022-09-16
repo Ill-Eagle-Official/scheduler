@@ -51,11 +51,11 @@ The API server is a separate project. You can find it here:
 
 ## Screenshots
 
-[The main page showing booked appointments](https://raw.githubusercontent.com/OfficialBirdDaddy/scheduler/master/docs/Appointments.png)
+![The main page showing booked appointments](https://raw.githubusercontent.com/OfficialBirdDaddy/scheduler/master/docs/Appointments.png)
 
-[The main page showing all empty appointment slots](https://github.com/OfficialBirdDaddy/scheduler/blob/master/docs/Empty.png?raw=true)
+![The main page showing all empty appointment slots](https://github.com/OfficialBirdDaddy/scheduler/blob/master/docs/Empty.png?raw=true)
 
-[The form for creating a new appointment](https://github.com/OfficialBirdDaddy/scheduler/blob/master/docs/Create.png?raw=true)
+![The form for creating a new appointment](https://github.com/OfficialBirdDaddy/scheduler/blob/master/docs/Create.png?raw=true)
 
 ## Project Stack
 
