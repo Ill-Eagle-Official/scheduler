@@ -19,10 +19,12 @@ export default function Application(props) {
     cancelInterview
   } = useApplicationData();
  
+  // gets appointments for each day
   const dailyAppointments = getAppointmentsForDay(state, state.day);
+  // gets interviewers for each day
   const dailyInterviewers = getInterviewersForDay(state, state.day);
   
-
+  // maps through the appointments for each day and returns the appointment component
   const schedule = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
 
@@ -39,7 +41,7 @@ export default function Application(props) {
     );
   });
 
-
+  // returns the application component
   return (
     <main className="layout">
       <section className="sidebar">

@@ -27,14 +27,14 @@ export default function useApplicationData() {
   
   // function to update the spots remaining
   function numOfSpots (increment, state) {
-    console.log("spots")
+    
     let stateDay = state.days.find((day) => day.name === state.day);
     let newDay = { ...stateDay, spots: stateDay.spots + increment };
 
-    console.log("newDay", newDay)
-    console.log("stateDay", stateDay)
+    let result = state.days.map((day) => (day.name === state.day ? newDay : day));
+    console.log(result);
 
-    return state.days.map((day) => (day.name === state.day ? newDay : day));
+    return result;
   };
 
   // calls a PUT request to update the appointment data as per user input
@@ -52,13 +52,26 @@ export default function useApplicationData() {
     
     return axios.put(`/api/appointments/${id}`, appointment)
     .then(() => {
+      // conditional to check if the appointment is being edited or created
+      if(!state.appointments[id].interview) {
+
       setState({
         ...state,
         appointments,
         days: numOfSpots(-1, state)
       })
-    });
-  }
+
+    } else {
+
+      setState({
+        ...state,
+        appointments,
+        days: numOfSpots(0, state)
+      })
+    }
+    })
+  };
+  
   
   // calls a DELETE request to update the appointment data as per user input
   function cancelInterview(id) {

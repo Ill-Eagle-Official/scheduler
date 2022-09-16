@@ -6,6 +6,7 @@ import classnames from "classnames";
 
 export default function Button(props) {
     
+  // sets the button class name
     let buttonClass = classnames("button", {
         "button--confirm": props.confirm,
         "button--danger": props.danger
